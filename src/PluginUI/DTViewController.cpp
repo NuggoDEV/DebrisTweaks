@@ -20,6 +20,10 @@ DEFINE_TYPE(DebrisTweaks::UI, DTViewController);
 type DTViewController::get_##name() { return getPluginConfig().name.GetValue(); }          \
 void DTViewController::set_##name(type value) { getPluginConfig().name.SetValue(value); }
 
+#define DEFAULT_VALUE(configVal, name)                                                \
+getPluginConfig().configVal.SetValue(getPluginConfig().configVal.GetDefaultValue());  \
+name->set_Value(getPluginConfig().configVal.GetDefaultValue());
+
 namespace DebrisTweaks::UI
 {
     std::function<std::string(float)> LifetimeFormatter = [](float value)
@@ -37,6 +41,7 @@ namespace DebrisTweaks::UI
         DebrisLifetimeID->formatter = LifetimeFormatter;
     }
 
+    // Button Click Functions
     void DTViewController::ActivateTestLevel() 
     {
         auto simpleLevelStarters = UnityEngine::Resources::FindObjectsOfTypeAll<GlobalNamespace::SimpleLevelStarter*>();
@@ -53,8 +58,20 @@ namespace DebrisTweaks::UI
 
     void DTViewController::ResetDefault() 
     {
-        getPluginConfig().ModToggle.SetValue(getPluginConfig().ModToggle.GetDefaultValue());
-        getPluginConfig().DebrisScale.SetValue(getPluginConfig().DebrisScale.GetDefaultValue());
+        // Base Stuff
+        DEFAULT_VALUE(ModToggle, ModToggleID);
+
+        // Physics Stuff
+        DEFAULT_VALUE(VelocityMult, VelocityMultID);
+        DEFAULT_VALUE(DebrisDrag, DebrisDragID);
+        DEFAULT_VALUE(UseGravity, UseGravityID);
+        DEFAULT_VALUE(PreventRotations, PreventRotationsID);
+
+        // Cosmetic Stuff
+        DEFAULT_VALUE(UseMonochromatic, UseMonochromaticID);
+        DEFAULT_VALUE(OverrideDebrisLifetime, OverrideDebrisLifetimeID);
+        DEFAULT_VALUE(DebrisScale, DebrisScaleID);
+        DEFAULT_VALUE(DebrisLifetime, DebrisLifetimeID);
     }
 
     void DTViewController::DebrisLifetimeEvent() 
@@ -62,12 +79,16 @@ namespace DebrisTweaks::UI
         DebrisLifetimeID->formatter = LifetimeFormatter;
     }
 
+    // Base Stuff
     BSML_VALUE(bool, ModToggle);
+
+    // Physics Stuff
     BSML_VALUE(float, VelocityMult);
     BSML_VALUE(float, DebrisDrag);
     BSML_VALUE(bool, UseGravity);
     BSML_VALUE(bool, PreventRotations);
-    BSML_VALUE(bool, UsePCDebris);
+
+    // Cosmetic Stuff
     BSML_VALUE(bool, UseMonochromatic);
     BSML_VALUE(bool, OverrideDebrisLifetime);
     BSML_VALUE(float, DebrisScale);

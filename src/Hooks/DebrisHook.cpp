@@ -50,24 +50,16 @@ MAKE_AUTO_HOOK_MATCH(NoteDebris_Init, &NoteDebris::Init, void, NoteDebris* self,
         Rigidbody *rb = self->GetComponent<Rigidbody*>();
 
         set_freezeRotation(rb, getPluginConfig().PreventRotations.GetValue());
-
         set_drag(rb, getPluginConfig().DebrisDrag.GetValue());
 
         Transform *transform = self->get_transform();
         rb->set_useGravity(getPluginConfig().UseGravity.GetValue());
 
         Renderer *render = transform->get_gameObject()->GetComponentInChildren<Renderer*>();
-        if (render)
-        {
-            ConditionalMaterialSwitcher *matSwitcher = transform->GetComponentInChildren<ConditionalMaterialSwitcher*>();
-            if (getPluginConfig().UsePCDebris.GetValue())
-                render->SetMaterial(matSwitcher->material1);
-            
-            if (getPluginConfig().UseMonochromatic.GetValue())
-            {
-                self->materialPropertyBlockController->materialPropertyBlock->SetColor(self->_get__colorID(), Color::get_gray());
-                self->materialPropertyBlockController->ApplyChanges();
-            }
+        if (render && getPluginConfig().UseMonochromatic.GetValue())
+        {            
+            self->materialPropertyBlockController->materialPropertyBlock->SetColor(self->_get__colorID(), Color::get_gray());
+            self->materialPropertyBlockController->ApplyChanges();
         }
     }
 }

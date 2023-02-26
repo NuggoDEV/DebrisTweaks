@@ -4,12 +4,12 @@
     <horizontal pref-width="58" pref-height="60">
         <tab tab-name="Physics" tags="tabs">
             <vertical>
-                <toggle-setting apply-on-change="true" text="Enable DebrisTweaks" value="ModToggle"/>
+                <toggle-setting apply-on-change="true" text="Enable Debris Tweaks" value="ModToggle" id="ModToggleID"/>
 
-                <slider-setting apply-on-change="true" text="Velocity Multiplier" value="VelocityMult" show-buttons="true" min="1" max="10"/>
-                <slider-setting apply-on-change="true" text="Drag" value="DebrisDrag" show-buttons="true" min="1" max="15"/>
-                <toggle-setting apply-on-change="true" text="Enable Gravity" value="UseGravity"/>
-                <toggle-setting apply-on-change="true" text="Prevent Rotations" value="PreventRotations"/>
+                <slider-setting apply-on-change="true" text="Velocity Multiplier" value="VelocityMult" show-buttons="true" min="1" max="10" increment="0.1" id="VelocityMultID"/>
+                <slider-setting apply-on-change="true" text="Drag" value="DebrisDrag" show-buttons="true" min="1" max="15" increment="0.1" id="DebrisDragID"/>
+                <toggle-setting apply-on-change="true" text="Enable Gravity" value="UseGravity" id="UseGravityID"/>
+                <toggle-setting apply-on-change="true" text="Prevent Rotations" value="PreventRotations" id="PreventRotationsID"/>
             
                 <stack>
                     <horizontal>
@@ -22,13 +22,12 @@
     
         <tab tab-name="Cosmetic" tags="tabs" >
             <vertical>
-                <toggle-setting apply-on-change="true" text="Enable DebrisTweaks" value="ModToggle"/>
+                <toggle-setting apply-on-change="true" text="Enable Debris Tweaks" value="ModToggle" id="ModToggleID"/>
 
-                <toggle-setting apply-on-change="true" text="Enable PC Debris" value="UsePCDebris"/>
-                <toggle-setting apply-on-change="true" text="Use Monochromatic Colours"  value="UseMonochromatic"/>
-                <slider-setting apply-on-change="true" text="Scale" value="DebrisScale" show-buttons="true"  min="0" max="1.5" increment="0.1"/>
+                <toggle-setting apply-on-change="true" text="Use Monochromatic Colours"  value="UseMonochromatic" id="UseMonochromaticID"/>
+                <slider-setting apply-on-change="true" text="Scale" value="DebrisScale" show-buttons="true"  min="0" max="1.5" increment="0.1" id="DebrisScaleID"/>
                 <text text=" "/>
-                <toggle-setting apply-on-change="true" text="Override Debris Lifetime"  value="OverrideDebrisLifetime"/>
+                <toggle-setting apply-on-change="true" text="Override Debris Lifetime"  value="OverrideDebrisLifetime" id="OverrideDebrisLifetimeID"/>
                 <slider-setting apply-on-change="true" text="Lifespan" value="DebrisLifetime" show-buttons="true" min="0.1" max="15" increment="0.05" id="DebrisLifetimeID" on-change="DebrisLifetimeEvent"/>
             
                 <stack>
