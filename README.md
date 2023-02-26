@@ -1,6 +1,13 @@
 # DebrisTweaks
 
-g
+## Features
+- Change the velocity of the debris
+- Change the drag of the debris
+- Change whether debris uses gravity or not
+- Stop debris from rotating
+- Use monochromatic colouring
+- Change the size of the debris
+- Change the lifetime of the debris
 
 ## Credits
 
