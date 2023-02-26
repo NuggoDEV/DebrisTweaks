@@ -36,11 +36,11 @@ MAKE_AUTO_HOOK_MATCH(NoteDebris_Init, &NoteDebris::Init, void, NoteDebris* self,
         float velocity = getPluginConfig().VelocityMult.GetValue();
 
         lifeTime = getPluginConfig().OverrideDebrisLifetime.GetValue() ? getPluginConfig().DebrisLifetime.GetValue() : lifeTime;
-        /*noteScale = Vector3().get_one() * getPluginConfig().DebrisScale.GetValue();
+        noteScale = Vector3().get_one() * getPluginConfig().DebrisScale.GetValue();
         
         force.x *= velocity; 
         force.y *= velocity; 
-        force.z *= velocity;*/
+        force.z *= velocity;
     }
 
     NoteDebris_Init(self, colorType, notePos, noteRot, noteMoveVec, noteScale, positionOffset, rotationOffset, cutPoint, cutNormal, force, torque, lifeTime);
