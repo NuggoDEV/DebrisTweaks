@@ -1,3 +1,4 @@
+#include "main.hpp"
 #include "hooks.hpp"
 #include "PluginConfig.hpp"
 
@@ -36,11 +37,13 @@ MAKE_AUTO_HOOK_MATCH(NoteDebris_Init, &NoteDebris::Init, void, NoteDebris* self,
         float velocity = getPluginConfig().VelocityMult.GetValue();
 
         lifeTime = getPluginConfig().OverrideDebrisLifetime.GetValue() ? getPluginConfig().DebrisLifetime.GetValue() : lifeTime;
+
         noteScale = Vector3().get_one() * getPluginConfig().DebrisScale.GetValue();
-        
+
         force.x *= velocity; 
         force.y *= velocity; 
         force.z *= velocity;
+        getLogger().info("Activated L, NS & FV");
     }
 
     NoteDebris_Init(self, colorType, notePos, noteRot, noteMoveVec, noteScale, positionOffset, rotationOffset, cutPoint, cutNormal, force, torque, lifeTime);
@@ -49,17 +52,26 @@ MAKE_AUTO_HOOK_MATCH(NoteDebris_Init, &NoteDebris::Init, void, NoteDebris* self,
     {
         Rigidbody *rb = self->GetComponent<Rigidbody*>();
 
-        set_freezeRotation(rb, getPluginConfig().PreventRotations.GetValue());
-        set_drag(rb, getPluginConfig().DebrisDrag.GetValue());
+        if (!getPluginConfig().inMulti.GetValue())
+        {
+            set_freezeRotation(rb, getPluginConfig().PreventRotations.GetValue());
+
+            set_drag(rb, getPluginConfig().DebrisDrag.GetValue());
+
+            rb->set_useGravity(getPluginConfig().UseGravity.GetValue());
+            getLogger().info("Activated PR, DD & UG");
+        }
+        
 
         Transform *transform = self->get_transform();
-        rb->set_useGravity(getPluginConfig().UseGravity.GetValue());
+        
 
         Renderer *render = transform->get_gameObject()->GetComponentInChildren<Renderer*>();
         if (render && getPluginConfig().UseMonochromatic.GetValue())
         {            
             self->materialPropertyBlockController->materialPropertyBlock->SetColor(self->_get__colorID(), Color::get_gray());
             self->materialPropertyBlockController->ApplyChanges();
+            getLogger().info("Successfully made debris monochromatic");
         }
     }
 }

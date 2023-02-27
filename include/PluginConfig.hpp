@@ -5,6 +5,7 @@
 DECLARE_CONFIG(PluginConfig,
     // Base Stuff
     CONFIG_VALUE(ModToggle, bool, "Activates/disables DebrisTweaks", true);
+    CONFIG_VALUE(inMulti, bool, "Disables features when in multi to prevent crash", false);
 
     // Physics Stuff
     CONFIG_VALUE(VelocityMult, float, "Velocity of the debris", 1.0f);
