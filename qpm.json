@@ -4,7 +4,7 @@
   "info": {
     "name": "DebrisTweaks",
     "id": "DebrisTweaks",
-    "version": "0.1.0",
+    "version": "1.0.1",
     "url": null,
     "additionalData": {
       "overrideSoName": "libDebrisTweaks.so"
@@ -27,12 +27,7 @@
     },
     {
       "id": "codegen",
-      "versionRange": "^0.32.0",
-      "additionalData": {}
-    },
-    {
-      "id": "bsml",
-      "versionRange": "^0.2.9",
+      "versionRange": "^0.33.0",
       "additionalData": {}
     },
     {
@@ -43,6 +38,11 @@
     {
       "id": "custom-types",
       "versionRange": "^0.15.22",
+      "additionalData": {}
+    },
+    {
+      "id": "bsml",
+      "versionRange": "^0.3.1",
       "additionalData": {}
     }
   ]
